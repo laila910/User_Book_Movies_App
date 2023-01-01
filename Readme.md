@@ -18,8 +18,8 @@
  1. make Models, Migration & relations between tables plus laravel UI.
  2. `composer require laravel/ui`.
  3. make CRUD For user and Movie plus book ticket and add MovieShowTimes for specific movie , Extra search on movie in movie home page :) and rendering movies like :).
- 5. Make movie and users  Api with Resources for rendering json data `http://127.0.0.1:8000/api/v1/movies` and for products `http://127.0.0.1:8000/api/v1/users`
- 6. and Search movie query by title or address `127.0.0.1:8000/api/v1/products?title[eq]=ddd&description[like]=kkdkkd`
+ 5. Make movie and users  Api with Resources for rendering json data `http://127.0.0.1:8000/api/v1/movies` and for users `http://127.0.0.1:8000/api/v1/users`
+ 6. and Search movie query by title or address `127.0.0.1:8000/api/v1/movies?name[eq]=ddd&description[like]=kkdkkd`
  7. Complete in frontEnd in angular, All Coding Until Finish but not finish , some ideas in my plan but time is almost close for deadline :))
 
 
@@ -34,6 +34,6 @@
   6. Run `composer install`
   6. Run `php artisan key:generate`
   7. Run `php artisan migrate`
-  9. Run `php artisan serve` and start Manage products & pharmacies in Product App in laravel, some views for testing and some for complete functionality  :) 
+  9. Run `php artisan serve` and start Manage users & movies in movie App in laravel, some views for testing and some for complete functionality  :) 
 
 # In angular follow default steps :))))
