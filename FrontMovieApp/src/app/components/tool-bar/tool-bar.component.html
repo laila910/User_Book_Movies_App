@@ -1,0 +1,154 @@
+<nav class="navbar navbar-expand-lg navbar-light nav p-2">
+        <a class="navbar-brand text-white" routerLink="/">Movies App</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+      
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav m-auto">
+            <li class="nav-item active">
+              <!-- <a class="nav-link text-white" routerLink="/">Home <span class="sr-only">(current)</span></a> -->
+            </li>
+            
+              <li class="nav-item">
+                <!-- <a class="nav-link text-white" routerLink="/Login">Login</a> -->
+  
+                <button *ngIf="apiService.token==null" type="button" class="btn" data-toggle="modal" data-target="#ModalLogin">
+                  Login
+                </button>
+              </li>
+              <li class="nav-item">
+                <!-- <a class="nav-link text-white" routerLink="/Register">Register</a> -->
+                <button  *ngIf="apiService.token==null"  type="button" class="btn" data-toggle="modal" data-target="#ModalRegister">Register</button>
+              </li>  
+              <!-- <li class="nav-item">
+                <button  *ngIf="apiService.token!=null" type="button" class="btn" routerLink="">Profile</button>
+
+              </li> -->
+
+           
+            
+        
+
+           
+            <li class="nav-item dropdown" *ngIf="apiService.token!=null" >
+              <button class="nav-link dropdown-toggle"  id="navbarDropdown" type="button" class="btn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{userInfo.username}}
+                
+              </button>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="profile">Profile</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" routerLink="logout/{{userData.id}}">Logout</a>
+              </div>
+            </li>
+            <li class="nav-item dropdown" *ngIf="admin==true" >
+              <button class="nav-link dropdown-toggle"  id="navbarDropdown" type="button" class="btn" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dashboard
+              </button>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="http://127.0.0.1:8000/api/v1/exportIntoExcel">Export All UsersMovies As Excel</a>
+                <a class="dropdown-item" href="http://127.0.0.1:8000/api/v1/exportIntoCSV">Export All UsersMovies As CSV</a>
+              
+              </div>
+            </li>
+           
+          </ul>
+          <!-- <form class="form">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn" type="submit"><i class="bi bi-search"></i></button>
+          </form> -->
+          <!-- <input type="text" placeholder=" Search" id="search" (change)="onChangeEvent($event)" value="{{ searchValue }}"> -->
+
+        </div>
+      </nav>
+
+      <!--Login Modal -->
+<div class="modal fade" id="ModalLogin" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        
+        <form [formGroup]="signInForm" style="margin-top: 20px;" (ngSubmit)='signIn(signInForm)'>
+          <div *ngIf="flag" class="alert alert-danger">
+            Invalid username or password!
+          </div>
+          <div class="form-group">
+
+            <input  formControlName="email" type="email" name="email" class="custom_input" id="InputEmail1"  placeholder="Enter email">
+            <!-- <div class="alert alert-danger" *ngIf="email?.invalid && email?.touched">
+              <p *ngIf="email?.errors?.['email']">Field must be a valid email</p>
+             </div> -->
+          </div>
+          <div class="form-group mt-1">
+            <input formControlName="password" type="password" name="password"  class="custom_input" id="exampleInputPassword1" placeholder="Password" >
+            <!-- <div class="alert alert-danger" *ngIf="password?.invalid && (password?.touched)">
+              <p *ngIf="password?.errors?.['minlength']">Password must be 3 characters or more</p>
+             </div> -->
+
+          </div>
+          <button  [disabled]="!signInForm.valid"  type="submit" class="btn btn-warning mt-4"> Sign in </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end Login Model -->
+  <!--Register Modal -->
+  <div class="modal fade" id="ModalRegister" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Register</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form [formGroup]="signUpForm" style="margin-top: 20px;" (ngSubmit)='signUp(signUpForm)' enctype="multipart/form-data">
+            <div *ngIf="flag2" class="alert alert-danger">
+              Invalid Data
+            </div>
+            <div class="form-group">
+              <input formControlName="username" type="text" name="username" class="custom_input"  id="InputName" placeholder="Enter Your Name">
+              <!-- <div class="alert alert-danger" *ngIf="username?.invalid && (username?.touched)">
+                <p *ngIf="username?.errors?.['minlength']">Name must be 3 characters or more</p>
+              </div> -->
+            </div>
+
+            <div class="form-group">
+              <input  formControlName="signup_email" type="email" name="signup_email" class="custom_input" id="InputEmail1"  placeholder="Enter email">
+              <!-- <div class="alert alert-danger" *ngIf="signup_email?.invalid && (signup_email?.touched)">
+                <p *ngIf="signup_email?.errors?.['email']">Field must be a valid email</p>
+               </div> -->
+            </div>
+            <div class="form-group mt-1">
+              <input formControlName="signup_password" type="password" required name="signup_password" minlength="3" class="custom_input" id="exampleInputPassword1" placeholder="Password" >
+              <!-- <div class="alert alert-danger" *ngIf="signup_password?.invalid && (signup_password?.touched)">
+                <p *ngIf="signup_password?.errors?.['minlength']">Password must be 3 characters or more</p>
+               </div> -->
+            </div>
+            <div class="form-group">
+              <input formControlName="password_confirmation" type="password" required name="password_confirmation" minlength="3" class="custom_input" id="exampleInputPassword2" placeholder="Password Confirmation">
+              <!-- <div class="alert alert-danger" *ngIf="password_confirmation?.invalid && (password_confirmation?.touched)">
+                <p *ngIf="password_confirmation?.errors?.['minlength']">Password Confirmation must be 3 characters or more</p>
+              </div> -->
+              </div>
+
+              <div class="form-group">
+                <label for="exampleInputImg">Image</label>
+                <input formControlName="image"  name="image" required type="file"  class="form-control" id="exampleInputImg"  placeholder="Enter Your Image.." (change)="onChange($event)">
+              </div>
+            
+            <button  [disabled]="!signUpForm.valid"  type="submit" class="btn btn-warning mt-4"> Sign in </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- end Register Model -->
+  

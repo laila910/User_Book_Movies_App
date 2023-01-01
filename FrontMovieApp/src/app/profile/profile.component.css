@@ -1,0 +1,48 @@
+img{
+    width:100px;
+  }
+  @media (max-width: 575.98px) {
+  }
+  
+  @media (min-width: 576px) and (max-width: 767.98px) {
+  }
+  
+  @media (min-width: 768px) and (max-width: 991.98px) {
+    img{
+        width:100px;
+      }
+  }
+  
+  @media (min-width: 992px) and (max-width: 1199.98px) {
+    img{
+      width:100px;
+    }
+  }
+  
+  @media (min-width: 1200px) {
+    img{
+      width:200px;
+    }
+  }
+   
+.text {
+    margin-top: 10px;
+    color: #b48b32;
+    font-family: "Amasis MT";
+    font-style: italic;
+    font-size: 25px;
+  }
+  button[type="button"], button[type="submit"]{
+    background-color: #fff;
+    color: #b48b32;
+    font-family: "Avenir Next LT Pro" !important;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  button[type="button"]:hover,button[type="submit"]:hover{
+   
+   
+    color: #000;
+  }

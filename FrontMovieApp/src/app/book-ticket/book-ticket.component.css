@@ -1,0 +1,39 @@
+.custom_input {
+    width: 300px;
+    height: 50px;
+    border: #b48b32 1.5px solid;
+    margin: 5px 0px;
+    color: #b48b32;
+    padding-left: 50px;
+  }
+  .custom_input:focus {
+    outline: none !important;
+    border: 2px solid #b48b32;
+  }
+  .custom_input::placeholder {
+    color: #b48b32;
+    font-family: "Avenir Next LT Pro" !important;
+    opacity: 1;
+    font-size: 18px;
+  }
+  
+.text {
+    margin-top: 50px;
+    color: #b48b32;
+    font-family: "Amasis MT";
+    font-style: italic;
+    font-size: 20px;
+  }
+  button[type="button"], button[type="submit"]{
+    color: #fff;
+    font-family: "Avenir Next LT Pro" !important;
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+  }
+  button[type="button"]:hover,button[type="submit"]:hover{
+    background-color: #fff;
+    color: #b48b32;
+  }
+  

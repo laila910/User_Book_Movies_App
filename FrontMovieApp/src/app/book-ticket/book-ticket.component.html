@@ -1,0 +1,29 @@
+<div class="container m-5">
+
+
+<form [formGroup]=" bookTicketForm" style="margin-top: 20px;" (ngSubmit)='book(bookTicketForm)'>
+    <div *ngIf="flag" class="alert alert-danger">
+      Invalid Data 
+    </div>
+    <div class="form-group">
+
+      <input  formControlName="ticketsNumbers" type="number" name="ticketsNumbers" class="custom_input" id="InputEmail1"  placeholder="Enter Tickets Number">
+      <!-- <div class="alert alert-danger" *ngIf="email?.invalid && email?.touched">
+        <p *ngIf="email?.errors?.['email']">Field must be a valid email</p>
+       </div> -->
+    </div>
+    <div class="form-group mt-1">
+            <label for="exampleDate" class="text"> choose Movie Show  Date & Time</label> &nbsp;
+            <select formControlName="datetime" name="datetime" class="custom_input"  style="width:400px" id="exampleType">
+              
+                  <option *ngFor="let movie of movieData.MovieShowsDetails" value="{{movie.DateOfShow}}@ {{movie.TimeOfShow}}">{{movie.DateOfShow}} @ {{movie.TimeOfShow}}</option>
+              </select>
+      <!-- <input formControlName="" type="password" name="password"  class="custom_input" id="exampleInputPassword1" placeholder="Password" > -->
+      <!-- <div class="alert alert-danger" *ngIf="password?.invalid && (password?.touched)">
+        <p *ngIf="password?.errors?.['minlength']">Password must be 3 characters or more</p>
+       </div> -->
+
+    </div>
+    <button  [disabled]="! bookTicketForm.valid"  type="submit" class="btn btn-warning mt-4"> Sign in </button>
+  </form>
+</div>

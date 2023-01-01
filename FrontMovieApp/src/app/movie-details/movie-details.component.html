@@ -1,0 +1,48 @@
+<div class="container mt-5 mb-5">
+    <mat-card class="example-card">
+        <mat-card-title-group>
+          <mat-card-title>
+            <h1 class="text-black text">Movie Name: <span class="text-warning">{{movieData.name}}</span><a *ngIf="admin==true" class="btn btn-primary" mat-raised-button color="light" href="http://127.0.0.1:8000/api/v1/{{movieData.id}}/exportExcel" type="button">Export All-Reserved Tickets As Excel</a><br>
+                <a *ngIf="admin==true" mat-raised-button color="light" href="http://127.0.0.1:8000/api/v1/{{movieData.id}}/exportCSV" type="button" class="btn btn-primary mt-2">Export All-Reserved Tickets As CSV</a><br>
+                <a *ngIf="admin==true" mat-raised-button color="light" href="http://127.0.0.1:8000/api/v1/{{movieData.id}}/DownloadPDF" type="button" class="btn btn-warning mt-2">Download All Reserved Data as PDF</a></h1> 
+            <br>
+            <mat-card-content>
+                <h3 class="text-black text">Movie Description: {{movieData.description}}</h3>
+                <h3 class="text-black text">Movie Type: {{movieData.type}}</h3>
+                <h3 class="text-black text">Movie Ticket Price: {{movieData.ticketPrice}}</h3>
+                <h3 class="text-black text">Movie Created Time: {{movieData.createdTime}}</h3>
+                <div class="text-black text"> <h3>  Movie Show Date & Times:</h3>
+                     <table class="table table-striped" >
+                        <thead>
+                    <tr>
+                        <th scope="col">Date Of Show</th>
+                        <th scope="col">Time Of Show</th>
+                        <th scope="col">Number Of Tickets</th>
+                        <th scope="col">Number of Reserved Tickets</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let movie of movieData.MovieShowsDetails">
+                        <td scope="row">{{movie.DateOfShow}}</td>
+                        <td>{{movie.TimeOfShow}}</td>
+                        <td>{{movie.NumberOfTickets}}</td>
+                        <td>{{movie.NumberOfReservedTickets}}</td>
+                    </tr>
+    
+                </tbody>
+                </table> </div>
+            </mat-card-content>
+           
+          </mat-card-title> 
+          <mat-divider></mat-divider>
+            <img  src="{{myService.IMG_URL}}{{movieData.image}}"> 
+             
+        </mat-card-title-group>
+        
+        <div class="d-flex justify-content-around p-2" id="buttons-group">
+            <button routerLink="bookTicket/{{movieData.id}}" type="button" ><mat-icon aria-hidden="false" aria-label="Example info icon" fontIcon="info"></mat-icon>Book A tickets</button>
+            <button mat-raised-button  color="light" routerLink="/" type="button"> <mat-icon aria-hidden="false" aria-label="Example home icon" fontIcon="home"></mat-icon>Movies Page</button> 
+        </div>
+          
+</mat-card>
+</div>

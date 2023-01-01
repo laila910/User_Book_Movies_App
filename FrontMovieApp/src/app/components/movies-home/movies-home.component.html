@@ -1,0 +1,23 @@
+
+<div class="mx-auto mt-2" style="width: 90%">
+        <div class="row">
+            <div *ngFor="let movie of movies.data" class="col-lg-3 col-md-4 col-sm-6 mb-3">
+                <div class="card" style="border: none">
+                    <img src="{{myService.IMG_URL}}{{movie.image}}" class="card-img-top">
+                    <div class="card-body rounded-bottom" style="text-align: center; background: #FAFAFA;">
+                        <h6 class="card-title" style="height:45px">{{movie.name}}</h6>
+                        <p class="card-text mb-4">EGP {{movie.ticketPrice | number:'1.2-2'}}</p>
+                        <div class="d-flex justify-content-around" id="buttons-group">
+                            <a routerLink="movies/{{movie.id}}" class="btn btn-primary deta-btn mb-2">Details</a>
+                            <a routerLink="bookTicket/{{movie.id}}" class="btn btn-primary deta-btn mb-2">Book A tickets</a>
+
+                          
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    
+</div>
+   
